@@ -3,6 +3,9 @@ import MainLayout from "../Layout/MainLayout";
 import Home from "../Pages/Home/Home";
 import Menu from "../Pages/Menu/Menu/Menu";
 import OrderFood from "../Pages/Order/OrderFood/OrderFood";
+import Login from "../Pages/Login/Login";
+import Register from "../Pages/Register/Register";
+import PrivetRoute from "./PrivetRoute";
 
 
 const router = createBrowserRouter([
@@ -20,7 +23,15 @@ const router = createBrowserRouter([
             },
             {
                 path:'orderFood/:category',
-                element:<OrderFood></OrderFood>
+                element:<PrivetRoute><OrderFood></OrderFood></PrivetRoute>
+            },
+            {
+                path: 'login',
+                element:<Login></Login>
+            },
+            {
+                path:'register',
+                element:<Register></Register>
             }
         ]
     }

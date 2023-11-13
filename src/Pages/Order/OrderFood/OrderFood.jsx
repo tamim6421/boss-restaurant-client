@@ -15,7 +15,7 @@ const OrderFood = () => {
     const [tabIndex, setTabIndex] = useState(initialIndex)
     const [menu] = useMenu()
    
-    console.log(category)
+    // console.log(category)
 
     const dessert = menu.filter( item => item.category === 'dessert')
     const pizza = menu.filter( item => item.category === 'pizza')
@@ -25,7 +25,7 @@ const OrderFood = () => {
 
 
   return (
-    <div>
+    <div className="">
            <Helmet>
                 <title>
                 BOSS RESTAURANT | Order
@@ -35,7 +35,7 @@ const OrderFood = () => {
       <Cover img={orderCover} title={"Order Foods"}></Cover>
 
       <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-        <TabList>
+        <TabList className='mt-10 border-b-2 text-center'>
           <Tab>Salad</Tab>
           <Tab>Pizza</Tab>
           <Tab>Soup</Tab>

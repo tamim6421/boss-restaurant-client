@@ -1,6 +1,18 @@
 import { NavLink } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
 
 const Navbar = () => {
+  const {logOut, user} = useAuth()
+  const handelLogout = () =>{
+    logOut()
+    .then( () =>{
+
+    })
+    .catch(error =>{
+      console.log(error)
+    })
+  }
+
   const links = (
     <>
       <li>
@@ -25,14 +37,30 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/orderFood"
+          to="/orderFood/salad"
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "text-orange-400 font-semibold text-xl" : "text-white text-lg"
           }
         >
-          Order
+          Order Food
         </NavLink>
       </li>
+     
+      {
+        
+        user? <>
+        <p className="text-center mt-4">{user.displayName}</p>
+        <button onClick={handelLogout} className="btn btn-ghost">Logout</button>  </> : <> <li>
+        <NavLink
+          to="/login"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "text-orange-400 font-semibold text-xl" : "text-white text-lg"
+          }
+        >
+          Login
+        </NavLink>
+      </li> </>
+      }
     </>
   );
   return (

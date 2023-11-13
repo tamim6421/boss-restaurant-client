@@ -21,6 +21,8 @@ const Category = () => {
         </SectionTitle>
        </div>
       <Swiper
+         loop={true}
+         autoplay = {true}
         slidesPerView={4}
         spaceBetween={30}
         centeredSlides={true}
@@ -30,7 +32,7 @@ const Category = () => {
         modules={[Pagination]}
         className="mySwiper mb-24"
       >
-        <SwiperSlide>
+        <SwiperSlide >
           <img src={slid1} alt="" />
           <h3 className="text-2xl font-semibold text-center text-white -mt-14">SALADS</h3>
         </SwiperSlide>
