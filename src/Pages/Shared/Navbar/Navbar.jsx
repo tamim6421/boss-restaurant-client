@@ -1,17 +1,23 @@
 import { NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
+import { BsFillCartCheckFill } from "react-icons/bs";
+import useCart from "../../../Hooks/useCart";
+
 
 const Navbar = () => {
-  const {logOut, user} = useAuth()
-  const handelLogout = () =>{
-    logOut()
-    .then( () =>{
+  const { logOut, user } = useAuth();
+  const [cart] = useCart()
+  // console.log(cart)
 
-    })
-    .catch(error =>{
-      console.log(error)
-    })
-  }
+
+  const handelLogout = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
 
   const links = (
     <>
@@ -19,7 +25,11 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-orange-400 font-semibold text-xl" : "text-white text-lg"
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-orange-400 font-semibold text-xl"
+              : "text-white text-lg"
           }
         >
           Home
@@ -29,38 +39,69 @@ const Navbar = () => {
         <NavLink
           to="/menu"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-orange-400 font-semibold text-xl" : "text-white text-lg"
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-orange-400 font-semibold text-xl"
+              : "text-white text-lg"
           }
         >
-         Our Menu
+          Our Menu
         </NavLink>
       </li>
       <li>
         <NavLink
           to="/orderFood/salad"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-orange-400 font-semibold text-xl" : "text-white text-lg"
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-orange-400 font-semibold text-xl"
+              : "text-white text-lg"
           }
         >
           Order Food
         </NavLink>
       </li>
-     
-      {
-        
-        user? <>
-        <p className="text-center mt-4">{user.displayName}</p>
-        <button onClick={handelLogout} className="btn btn-ghost">Logout</button>  </> : <> <li>
+
+      <li>
         <NavLink
-          to="/login"
-          className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-orange-400 font-semibold text-xl" : "text-white text-lg"
-          }
+          to="/dashBoard/cart"
+        
         >
-          Login
+          <button className="flex justify-center gap-2 items-center mt-2">
+            <BsFillCartCheckFill className="text-2xl"></BsFillCartCheckFill>
+            <div className="badge badge-secondary"> + {cart.length} </div>
+          </button>
         </NavLink>
-      </li> </>
-      }
+      </li>
+
+      {user ? (
+        <>
+          {/* <p className="text-center mt-4">{user.displayName}</p> */}
+          <button onClick={handelLogout} className="btn btn-ghost">
+            Logout
+          </button>{" "}
+        </>
+      ) : (
+        <>
+          {" "}
+          <li>
+            <NavLink
+              to="/login"
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "pending"
+                  : isActive
+                  ? "text-orange-400 font-semibold text-xl"
+                  : "text-white text-lg"
+              }
+            >
+              Login
+            </NavLink>
+          </li>{" "}
+        </>
+      )}
     </>
   );
   return (

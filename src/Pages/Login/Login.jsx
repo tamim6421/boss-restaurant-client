@@ -109,12 +109,13 @@ const  from = location.state?.from.pathname || '/'
                 // ref = {captchaRef}
                 name="captcha"
                 className="input input-bordered"
-                required
+                
               />
             
             </div>
             <div className="form-control mt-6">
-              <input disabled = {disabled} className="btn btn-primary" type="submit" value="Login" />
+              {/* apply disabled button  */}
+              <input disabled = {false} className="btn btn-primary" type="submit" value="Login" />
             </div>
           </form>
 
