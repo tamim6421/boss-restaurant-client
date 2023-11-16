@@ -2,18 +2,22 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import Swal from 'sweetalert2'
+import SocialLogin from "../../Component/SocialLogin/SocialLogin";
 
 
 
 
 const Register = () => {
+  const axiosPublic = useAxiosPublic()
     const {createUser, updateUserProfile} = useAuth()
     const navigate = useNavigate()
+  
 
     const {
         register,
         handleSubmit,
-        watch,
         reset,
         formState: { errors },
       } = useForm()
@@ -25,11 +29,33 @@ const Register = () => {
         .then( res => {
             const user = res.user
             console.log(user)
-            alert('user create successful')
+           
             updateUserProfile(data.name, data.photoURL)
             .then( () =>{
-              reset()
-              navigate('/')
+
+              // send user data to the database 
+              const userInfo = {
+                name: data.name,
+                email: data.email
+              }
+
+              axiosPublic.post('/users', userInfo )
+              .then( res => {
+                console.log(res.data)
+                if(res.data.insertedId){
+                  Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: "User Created Successful",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  reset()
+                  navigate('/')
+                }
+              })
+
+              
             })
             .catch(error =>{
               console.log(error)
@@ -162,11 +188,16 @@ const Register = () => {
             </div>
           </form>
                 
-        <p className="pb-5">already have an account <Link to='/login'> Login</Link> </p>
+        <p className="pb-5 text-center">already have  an account <Link className="text-orange-500 underline" to='/login'> Login</Link> </p>
 
+        <div className="w-full px-5">
+          <SocialLogin></SocialLogin>
+        </div>
+        
         </div>
       </div>
     </div>
+        
     </div>
     );
 };

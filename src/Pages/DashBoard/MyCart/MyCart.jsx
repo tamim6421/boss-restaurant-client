@@ -38,6 +38,8 @@ const MyCart = () => {
             }
             });
   }
+
+  
   return (
     <div>
       <div className="flex justify-evenly mb-3 mt-10">

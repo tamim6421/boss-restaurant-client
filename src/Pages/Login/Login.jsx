@@ -4,13 +4,15 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, val
 import useAuth from '../../Hooks/useAuth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import Swal from 'sweetalert2';
+import SocialLogin from '../../Component/SocialLogin/SocialLogin';
 
 const Login = () => {
   const {signInUser} = useAuth()
     const [disabled, setDisabled] = useState(true)
     const location = useLocation()
     const navigate = useNavigate()
-    console.log(location)
+    // console.log(location)
 const  from = location.state?.from.pathname || '/'
 
     useEffect( () =>{
@@ -39,7 +41,13 @@ const  from = location.state?.from.pathname || '/'
         .then(res => {
           const user = res.user
           console.log(user)
-          alert('login successful')
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Login Successful",
+            showConfirmButton: false,
+            timer: 1500
+          });
           navigate(from, {replace: true})
         })
         .catch(error =>{
@@ -122,6 +130,11 @@ const  from = location.state?.from.pathname || '/'
           <div className='mb-5 text-center'>
             <h1>New Here ? please <Link to='/register'>Create an Account</Link> </h1>
           </div>
+
+          <div className="w-full px-5">
+          <SocialLogin></SocialLogin>
+        </div>
+
         </div>
       </div>
     </div>
