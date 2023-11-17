@@ -63,10 +63,7 @@ const AuthProvider = ({children}) => {
         }
     } ,[axiosPublic] )
 
-    useEffect(() =>{
-        setLoading(false)
-    } ,[])
-
+ 
     const authInfo = {user, loading, createUser, signInUser, logOut, updateUserProfile, googleSignIn}
     return (
         <AuthContext.Provider value={authInfo}>

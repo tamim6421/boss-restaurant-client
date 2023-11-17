@@ -5,6 +5,7 @@ import useAuth from "../Hooks/useAuth";
 
 const PrivetRoute = ({children}) => {
     const {user, loading} = useAuth()
+    
     const location = useLocation()
 
     if(loading){
@@ -14,6 +15,7 @@ const PrivetRoute = ({children}) => {
     if(user){
         return children
     }
+
     return <Navigate to='/login' state={{from: location}} replace ></Navigate>
 };
 

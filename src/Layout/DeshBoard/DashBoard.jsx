@@ -17,9 +17,9 @@ const DashBoard = () => {
 
     return (
         <div>
-            <div className="flex">
+            <div className="flex flex-col md:flex-row">
                 {/* dashboard sidebar  */}
-                <div className="w-64 min-h-screen bg-orange-300">
+                <div className="w-64 max-h-max bg-orange-300">
                     <ul className="menu space-y-5 p-4">
                        
                        {
@@ -31,7 +31,7 @@ const DashBoard = () => {
                             <NavLink to='/dashBoard/addItems'> <FaUtensils className="text-2xl"></FaUtensils>  Add Items</NavLink>
                         </li>
                         <li>
-                            <NavLink to='/dashBoard/reservation'> <FaList className="text-2xl"></FaList> Manage Items</NavLink>
+                            <NavLink to='/dashBoard/manageItems'> <FaList className="text-2xl"></FaList> Manage Items</NavLink>
                         </li>
                         <li>
                             <NavLink to='/dashBoard/review'> <BsFillClipboard2DataFill className="text-2xl"></BsFillClipboard2DataFill>Manage Bookings</NavLink>
