@@ -106,7 +106,7 @@ const AllUsers = () => {
     
     </tbody>
   </table>
-</div>
+             </div>
             </div>
         </div>
     );

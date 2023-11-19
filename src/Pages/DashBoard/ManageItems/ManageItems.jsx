@@ -92,10 +92,11 @@ const ManageItems = () => {
                     </th>
                   </tr>)
             }
+            
            
           </tbody>
         </table>
-      </div>
+            </div>
             </div>
         </div>
     );

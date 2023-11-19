@@ -3,7 +3,7 @@ import { BsFillCartCheckFill, BsFillCalendar2Fill, BsFillClipboard2DataFill,BsFi
 import { MdPayment, MdMenu } from "react-icons/md";
 import { BiHomeAlt } from "react-icons/bi";
 import useCart from "../../Hooks/useCart";
-import { FaList, FaPhone, FaUser, FaUtensils } from "react-icons/fa";
+import { FaList, FaListAlt, FaPhone, FaUser, FaUtensils } from "react-icons/fa";
 import useAdmin from "../../Hooks/useAdmin";
 
 
@@ -21,7 +21,7 @@ const DashBoard = () => {
                 {/* dashboard sidebar  */}
                 <div className="w-64 max-h-max bg-orange-300">
                     <ul className="menu space-y-5 p-4">
-                       
+                      {/* admin only links  */}
                        {
                         isAdmin? <>
                          <li>
@@ -43,6 +43,7 @@ const DashBoard = () => {
 
 
                         </> : 
+                        //normal user route
                          <>
                           <li>
                             <NavLink to='/dashBoard/userHome'> <BiHomeAlt className="text-2xl"></BiHomeAlt>User Home</NavLink>
@@ -51,7 +52,7 @@ const DashBoard = () => {
                             <NavLink to='/dashBoard/cart'> <BsFillCartCheckFill className="text-2xl"></BsFillCartCheckFill>  My Cart ({cart.length})</NavLink>
                         </li>
                         <li>
-                            <NavLink to='/dashBoard/reservation'> <BsFillCalendar2Fill className="text-2xl"></BsFillCalendar2Fill> Reservation</NavLink>
+                            <NavLink to='/dashBoard/paymentHistory'> <FaListAlt className="text-2xl"></FaListAlt> Payment History</NavLink>
                         </li>
                         <li>
                             <NavLink to='/dashBoard/review'> <BsFillClipboard2DataFill className="text-2xl"></BsFillClipboard2DataFill> Add Review</NavLink>
